@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="kr.spring.board.dao.BoardMapper">
+	<!-- 총 레코드 수 id=BoardMapper인터페이스의 메소드명이다 -->
+	<select id="getBoardCount" resultType="integer">
+		SELECT COUNT(*) FROM spboard
+	</select>
+	<!-- 목록 -->
+	<select id="getBoardList" parameterType="map" resultType="boardVO">
+		SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM spboard ORDER BY reg_date DESC)a) <![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>
+	</select>
+			
+	
+  	
+</mapper>
+
+
+
+
+
+
+
