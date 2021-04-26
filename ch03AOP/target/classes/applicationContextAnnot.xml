@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/aop
+       	http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <!-- 어노테이션 방식으로 AOP를 설정 -->
+   <aop:aspectj-autoproxy/>
+ 	
+ 	<!-- 공통 코드를 표시한 클래스를 빈 객체 생성 -->
+ 	<bean id="myFirstAdvice" class="kr.spring.ch02.MyFirstAspect"/>
+ 	
+ 	<!-- 핵심코드를 표시한 클래스를 빈 객체 생성 -->
+ 	<bean id="product" class="kr.spring.product.Product"/>
+</beans>
+
+
+
+

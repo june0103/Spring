@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/aop
+       	http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <!-- 공통 코드를 명시한 클래스를 빈 객체로 생성 -->
+   <bean id="myFirstAdvice" class="kr.spring.ch01.MyFirstAdvice"/>
+ 	<!-- 핵심 코드를 명시한 클래스를 빈 객체로 생성 -->
+ 	<bean id="product" class="kr.spring.product.Product"/>
+ 	
+ 	<!-- AOP설정 -->
+ 	<aop:config>
+ 		<!-- 핵심코드가 동작될 때 공통 코드를 언제 실행시킬지 지정 -->
+ 								<!-- 공통코드가 명시된 빈 객체 이름  -->
+ 		<aop:aspect id="aspect" ref="myFirstAdvice">
+ 			<!-- 핵심코드가 명시된 빈 객체 검색 -->
+ 			<aop:pointcut expression="execution(public String launch())" id="publicMethod"/>
+ 			<!-- 핵심코드가 동작될 때 공동 코드 실행 위치를 지정-->
+ 													<!-- 검색된 핵심코드 -->
+ 			<!-- <aop:before method="before" pointcut-ref="publicMethod"/> -->
+ 			
+ 			<!-- <aop:after-returning method="afterReturning" pointcut-ref="publicMethod" returning="msg"/> -->
+ 			
+ 			<!-- <aop:after-throwing method="afterThrowing" pointcut-ref="publicMethod" throwing="ex"/> -->
+ 			
+ 			<!-- <aop:after method="after" pointcut-ref="publicMethod"/> -->
+ 			
+ 			<aop:around method="around" pointcut-ref="publicMethod" />
+ 			
+ 		</aop:aspect>
+ 	</aop:config>
+ 	
+</beans>
+
+
+
+
