@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/aop
+       	http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <!-- @Required,@Autowired,@Resource 어노테이션을 사용할 때는 아래 설정 추가 -->
+   <context:annotation-config/>
+   
+   <!-- @Required 어노테이션을 이용한 필수 프로퍼티 설정 -->
+   <bean id="camera1" class="kr.spring.ch01.Camera">
+   <!-- number 프로퍼티에 @Required 어노테이션을 적용하고 
+   		number 프로퍼티에 값을 설정하지 않으면 예외 발생 -->
+   	<property name="number" value="10"/>
+   </bean>
+   
+   <!-- @Autowired 어노테이션을 이용한 자동 설정 -->
+   <bean id="monitor" class="kr.spring.ch02.SystemMonitor"/>
+   <bean id="sender" class="kr.spring.ch02.SmsSender"/>
+   
+   <!-- @Autowired 어노테이션을 이용한 자동 설정 -->
+   <bean id="systemMonitor" class="kr.spring.ch03.SystemMonitor2"/>
+   <bean id="recorder1" class="kr.spring.ch03.Recorder">
+   		<qualifier value="main"/>
+   </bean>
+   <!-- @Autowired는 타입을 체크하기 때문에 동일한 타입의 객체가 둘 이상 존재할 경우 오류발생 -->
+   <bean id="recorder2" class="kr.spring.ch03.Recorder"/>
+   
+   <!-- @Resource 어노테이션을 이용한 자동설정 -->
+   <!-- 프로퍼티명과 빈 객체의 이름이 일치함녀 자동 설정 -->
+   <bean id="homeController" class="kr.spring.ch04.HomeController"/>
+   <bean id="camera2" class="kr.spring.ch04.Camera" p:number="20"/>
+   <bean id="cameraz" class="kr.spring.ch04.Camera" p:number="30"/>
+   <bean id="camera4" class="kr.spring.ch04.Camera" p:number="40"/>
+   
+</beans>
+
+
+
+
